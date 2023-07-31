@@ -36,8 +36,8 @@ public class TestTransfer {
         String sum = "100";
         var moneyTransferDataInput = transferPage.transferForm(sum, infoCard);
 
-        assertEquals( balanceFirstCard - Integer.parseInt( sum ), dashboardPage.getCardBalance(firstCardInfo));
-        assertEquals( balanceSecondCard + Integer.parseInt( sum ), dashboardPage.getCardBalance(secondCardInfo));
+        assertEquals(balanceFirstCard - Integer.parseInt(sum), dashboardPage.getCardBalance(firstCardInfo));
+        assertEquals(balanceSecondCard + Integer.parseInt(sum), dashboardPage.getCardBalance(secondCardInfo));
 
     }
 
@@ -54,8 +54,8 @@ public class TestTransfer {
         String sum = "100";
         var moneyTransferDataInput = transferPage.transferForm(sum, infoCard);
 
-        assertEquals( balanceFirstCard + Integer.parseInt( sum ), dashboardPage.getCardBalance(firstCardInfo));
-        assertEquals( balanceSecondCard - Integer.parseInt( sum ), dashboardPage.getCardBalance(secondCardInfo));
+        assertEquals(balanceFirstCard + Integer.parseInt(sum), dashboardPage.getCardBalance(firstCardInfo));
+        assertEquals(balanceSecondCard - Integer.parseInt(sum), dashboardPage.getCardBalance(secondCardInfo));
 
     }
 
@@ -77,8 +77,35 @@ public class TestTransfer {
         var moneyTransfer = dashboardPage.firstCardButton();
         var infoCard = DataHelper.getSecondCardInfo();
         String sum = "20_000";
-        moneyTransfer.transferForm( sum, infoCard );
+        moneyTransfer.transferForm(sum, infoCard);
         moneyTransfer.errorMessage();
     }
 
+    @Test
+    void shouldNotEnterAmount() {
+        var dashboardPage = new DashboardPage();
+        var firstCardInfo = DataHelper.getFirstCardInfo();
+        var secondCardInfo = DataHelper.getSecondCardInfo();
+        var balanceFirstCard = dashboardPage.getCardBalance(firstCardInfo);
+        var balanceSecondCard = dashboardPage.getCardBalance(secondCardInfo);
+        var moneyTransfer = dashboardPage.firstCardButton();
+        var infoCard = DataHelper.getSecondCardInfo();
+        String sum = "";
+        moneyTransfer.transferForm(sum, infoCard);
+        moneyTransfer.errorMessage();
+    }
+
+    @Test
+    void shouldChooseOneTransferAndReceiptCard() {
+        var dashboardPage = new DashboardPage();
+        var firstCardInfo = DataHelper.getFirstCardInfo();
+        var secondCardInfo = DataHelper.getSecondCardInfo();
+        var balanceFirstCard = dashboardPage.getCardBalance(firstCardInfo);
+        var balanceSecondCard = dashboardPage.getCardBalance(secondCardInfo);
+        var moneyTransfer = dashboardPage.firstCardButton();
+        var infoCard = DataHelper.getFirstCardInfo();
+        String sum = "100";
+        moneyTransfer.transferForm(sum, infoCard);
+        moneyTransfer.errorMessage();
+    }
 }
