@@ -78,7 +78,7 @@ public class TestTransfer {
         var infoCard = DataHelper.getSecondCardInfo();
         String sum = "20_000";
         moneyTransfer.transferForm(sum, infoCard);
-        moneyTransfer.errorMessage();
+        moneyTransfer.errorMessage("Ошибка! Произошла ошибка");
     }
 
     @Test
@@ -92,7 +92,7 @@ public class TestTransfer {
         var infoCard = DataHelper.getSecondCardInfo();
         String sum = "";
         moneyTransfer.transferForm(sum, infoCard);
-        moneyTransfer.errorMessage();
+        moneyTransfer.errorMessage("Ошибка! Произошла ошибка");
     }
 
     @Test
@@ -106,6 +106,6 @@ public class TestTransfer {
         var infoCard = DataHelper.getFirstCardInfo();
         String sum = "100";
         moneyTransfer.transferForm(sum, infoCard);
-        moneyTransfer.errorMessage();
+        moneyTransfer.errorMessage("Ошибка! Произошла ошибка");
     }
 }

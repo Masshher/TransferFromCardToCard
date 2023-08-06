@@ -29,15 +29,8 @@ public class TransferPage {
         return new DashboardPage();
     }
 
-    public DashboardPage transferFormWithoutCard(String sum, String card) {
-        amount.setValue(sum);
-        from.setValue(card);
-        button.click();
-        return new DashboardPage();
-    }
-
-    public void errorMessage() {
-        error.shouldHave(exactText(""), Duration.ofSeconds(15)).should(visible);
+    public void errorMessage(String expectedText) {
+        error.shouldHave(exactText(expectedText), Duration.ofSeconds(15)).should(visible);
 
     }
 
